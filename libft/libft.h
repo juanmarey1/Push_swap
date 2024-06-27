@@ -19,6 +19,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <stdarg.h>
+# include <limits.h>
 
 //Libft
 typedef struct s_list

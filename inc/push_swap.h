@@ -8,6 +8,7 @@ typedef struct s_stack_a
 {
     char    **args;
     t_list  **list;
+    int     atoi_error;
 }   t_stack_a;
 
 typedef struct s_stack_b
@@ -17,9 +18,13 @@ typedef struct s_stack_b
 
 void    ft_double_free(char **double_str);
 void    ft_error(char *str);
+void    ft_error_allocated(char *str, t_stack_a *stack_a);
 
 void    check_args_int_1(char **argv, t_stack_a *stack_a);
 void	check_args_int_2(int argc, char **argv, t_stack_a *stack_a);
 void    check_args_max_int(t_stack_a *stack_a);
+void    create_list(t_stack_a *stack_a);
+int     ft_atoi_long(const char *str, t_stack_a *stack_a);
+
 
 #endif

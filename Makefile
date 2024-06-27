@@ -1,32 +1,35 @@
-NAME = push_swap #Nombre ejecutable
+NAME =	push_swap #Nombre ejecutable
 
-CC = gcc
-RM = rm -rf
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g #fsanitize=address for leak control
+CC =	gcc
+RM =	rm -rf
+CFLAGS =	-Wall -Wextra -Werror -fsanitize=address -g #fsanitize=address for leak control
 
-SRCS = check_args.c errors.c main.c create_list.c push.c reverse_rotate.c rotate.c swap.c
+SRCS = check_args.c errors.c main.c create_list.c push.c reverse_rotate.c rotate.c swap.c atoi_long.c
 OBJS = $(SRCS:.c=.o) #When OBJS is executed, it changes .c to .o
 
 INC = -I inc -I libft #Searches libraries in both folders
-LIBRARY = -L libft #Searches makefiles in libft folder
+LIBRARY = -L libft -lft #Searches makefiles in libft folder
 
 %.o: %.c #Cannot create .o if the .c does not exist (for creating the objects), also the program knows how to create them now (line below)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-all: $(NAME)
+all:	$(NAME)
 
-$(NAME) = $(OBJS) maker #it makes objects and libft executable, also compile all objects with libraries, etc and creates executable NAME
+$(NAME): $(OBJS) maker #it makes objects and libft executable, also compile all objects with libraries, etc and creates executable NAME
 	@$(CC) $(CFLAGS) $(INC) $(OBJS) $(LIBRARY) -o $(NAME)
 	@echo "$(NAME) created"
 
 maker:
 	@make -C libft
+	@make bonus -C libft
 
 clean:
+	@make clean -C libft
 	@$(RM) $(OBJS)
 	@echo "Objects removed"
 
 fclean: clean
+	@make fclean -C libft
 	@$(RM) $(NAME)
 	@echo "$(NAME) removed"
 

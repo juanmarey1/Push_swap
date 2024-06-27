@@ -14,11 +14,11 @@ void    check_args_int_1(char **argv, t_stack_a *stack_a) //If it comes with com
                 || (stack_a->args[i][j] >= '0' && stack_a->args[i][j] <= '9'))
             j++;
         else
-            ft_error(NOT_NUM_ARGS);
+            ft_error_allocated(NOT_NUM_ARGS, stack_a);
         while (stack_a->args[i][j])
         {
             if (!(stack_a->args[i][j] >= '0' && stack_a->args[i][j] <= '9'))
-                ft_error(NOT_NUM_ARGS);
+                ft_error_allocated(NOT_NUM_ARGS, stack_a);
             j++;
         }
     }
@@ -60,11 +60,11 @@ void	check_args_int_2(int argc, char **argv, t_stack_a *stack_a)
                 || (argv[i][j] >= '0' && argv[i][j] <= '9'))
             j++;
         else
-            ft_error(NOT_NUM_ARGS);
+            ft_error_allocated(NOT_NUM_ARGS, stack_a);
         while (argv[i][j])
         {
             if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
-                ft_error(NOT_NUM_ARGS);
+                ft_error_allocated(NOT_NUM_ARGS, stack_a);
             j++;
         }
     }
@@ -105,8 +105,7 @@ void    check_args_max_int(t_stack_a *stack_a)
     i = 0;
     while (stack_a->args[i])
     {
-        if (ft_atoi(stack_a->args[i]) > MAX_NUM ||
-                ft_atoi(stack_a->args[i] < MIN_NUM))
+        if (ft_atoi_long(stack_a->args[i], stack_a) == 0 && stack_a->atoi_error == 1)
         {
             ft_double_free(stack_a->args);
             ft_error(INV_NUM_ARGS);

@@ -9,8 +9,6 @@ void    struct_init(t_stack_a *stack_a, t_stack_b *stack_b)
 
 void    args_control(int argc, char **argv, t_stack_a *stack_a)
 {
-    int i;
-
     if (argc < 2 || argc > 501)
         ft_error(ARGS_ERROR);
     if (argc == 2)
@@ -27,5 +25,5 @@ int main(int argc, char *argv[])
 
     struct_init(&stack_a, &stack_b);
     args_control(argc, argv, &stack_a);
-    create_list(argc, argv, &stack_a);
+    create_list(&stack_a);
 }

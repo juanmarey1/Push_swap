@@ -7,7 +7,4 @@
 # define ARGS_REPEAT "Repeated numbers are not allowed"
 # define MALLOC_ERR "Malloc error"
 
-# define MAX_NUM 2147483647
-# define MIN_NUM -2147483648
-
 #endif
