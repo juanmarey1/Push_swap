@@ -12,7 +12,7 @@ void    push_a(t_stack_a *stack_a, t_stack_b *stack_b)
     (*stack_b->list)->next = NULL;
     free(*stack_b->list);
     *stack_b->list = lsta;
-    ft_printf("pb\n");
+    ft_printf("pa\n");
 }
 
 void    push_b(t_stack_a *stack_a, t_stack_b *stack_b)

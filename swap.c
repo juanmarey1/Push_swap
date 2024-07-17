@@ -26,6 +26,17 @@ void    swap_b(t_stack_b *stack_b)
 
 void    swap_ab(t_stack_a *stack_a, t_stack_b *stack_b)
 {
-    swap_a(stack_a);
-    swap_b(stack_b);
+    t_list  *lst;
+    t_list  *lst2;
+    void    *aux;
+    
+    lst = (*stack_a->list);
+    aux = lst->content;
+    lst->content = lst->next->content;
+    lst->next->content = aux;
+    lst2 = (*stack_b->list);
+    aux = lst2->content;
+    lst2->content = lst2->next->content;
+    lst2->next->content = aux;
+    ft_printf("ss\n");
 }
