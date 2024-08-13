@@ -1,31 +1,31 @@
 #include "inc/push_swap.h"
 
-void    push_a(t_stack_a *stack_a, t_stack_b *stack_b)
+void    push_a(t_stack *stack)
 {
     t_list *new;
     t_list *lsta;
 
-    lsta = (*stack_b->list)->next;
-    new = ft_lstnew((*stack_b->list)->content);
-    ft_lstadd_front(stack_a->list, new);
-    (*stack_b->list)->content = NULL;
-    (*stack_b->list)->next = NULL;
-    free(*stack_b->list);
-    *stack_b->list = lsta;
+    lsta = (*stack->stack_b)->next;
+    new = ft_lstnew((*stack->stack_b)->content);
+    ft_lstadd_front(stack->stack_a, new);
+    (*stack->stack_b)->content = NULL;
+    (*stack->stack_b)->next = NULL;
+    free(*stack->stack_b);
+    *stack->stack_b = lsta;
     ft_printf("pa\n");
 }
 
-void    push_b(t_stack_a *stack_a, t_stack_b *stack_b)
+void    push_b(t_stack *stack)
 {
     t_list *new;
     t_list *lsta;
 
-    lsta = (*stack_a->list)->next;
-    new = ft_lstnew((*stack_a->list)->content);
-    ft_lstadd_front(stack_b->list, new);
-    (*stack_a->list)->content = NULL;
-    (*stack_a->list)->next = NULL;
-    free(*stack_a->list);
-    *stack_a->list = lsta;
+    lsta = (*stack->stack_a)->next;
+    new = ft_lstnew((*stack->stack_a)->content);
+    ft_lstadd_front(stack->stack_b, new);
+    (*stack->stack_a)->content = NULL;
+    (*stack->stack_a)->next = NULL;
+    free(*stack->stack_a);
+    *stack->stack_a = lsta;
     ft_printf("pb\n");
 }

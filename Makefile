@@ -4,7 +4,7 @@ CC =	gcc
 RM =	rm -rf
 CFLAGS =	-Wall -Wextra -Werror -fsanitize=address -g #fsanitize=address for leak control
 
-SRCS = check_args.c errors.c main.c create_list.c push.c reverse_rotate.c rotate.c swap.c atoi_long.c
+SRCS = check_args.c errors.c main.c create_list.c push.c reverse_rotate.c rotate.c swap.c atoi_long.c init_algorithm.c find_cost.c find_closest_number_to_a.c
 OBJS = $(SRCS:.c=.o) #When OBJS is executed, it changes .c to .o
 
 INC = -I inc -I libft #Searches libraries in both folders

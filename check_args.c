@@ -1,24 +1,24 @@
 #include "inc/push_swap.h"
 
-void    check_args_int_1(char **argv, t_stack_a *stack_a) //If it comes with commas
+void    check_args_int_1(char **argv, t_stack *stack) //If it comes with commas
 {
     int i;
     int j;
 
     i = -1;
-    stack_a->args = ft_split(argv[1], ' ');
-    while (stack_a->args[++i])
+    stack->args = ft_split(argv[1], ' ');
+    while (stack->args[++i])
     {
         j = 0;
-        if ((stack_a->args[i][j] == '-' && (stack_a->args[i][j + 1] >= '0' && stack_a->args[i][j + 1] <= '9'))
-                || (stack_a->args[i][j] >= '0' && stack_a->args[i][j] <= '9'))
+        if ((stack->args[i][j] == '-' && (stack->args[i][j + 1] >= '0' && stack->args[i][j + 1] <= '9'))
+                || (stack->args[i][j] >= '0' && stack->args[i][j] <= '9'))
             j++;
         else
-            ft_error_allocated(NOT_NUM_ARGS, stack_a);
-        while (stack_a->args[i][j])
+            ft_error_allocated(NOT_NUM_ARGS, stack);
+        while (stack->args[i][j])
         {
-            if (!(stack_a->args[i][j] >= '0' && stack_a->args[i][j] <= '9'))
-                ft_error_allocated(NOT_NUM_ARGS, stack_a);
+            if (!(stack->args[i][j] >= '0' && stack->args[i][j] <= '9'))
+                ft_error_allocated(NOT_NUM_ARGS, stack);
             j++;
         }
     }
@@ -47,7 +47,7 @@ char    **ft_doublestrcpy(int argc, char **argv)
     return (double_str);
 }
 
-void	check_args_int_2(int argc, char **argv, t_stack_a *stack_a)
+void	check_args_int_2(int argc, char **argv, t_stack *stack)
 {
 	int	i;
 	int	j;
@@ -60,15 +60,15 @@ void	check_args_int_2(int argc, char **argv, t_stack_a *stack_a)
                 || (argv[i][j] >= '0' && argv[i][j] <= '9'))
             j++;
         else
-            ft_error_allocated(NOT_NUM_ARGS, stack_a);
+            ft_error_allocated(NOT_NUM_ARGS, stack);
         while (argv[i][j])
         {
             if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
-                ft_error_allocated(NOT_NUM_ARGS, stack_a);
+                ft_error_allocated(NOT_NUM_ARGS, stack);
             j++;
         }
     }
-    stack_a->args = ft_doublestrcpy(argc, argv);
+    stack->args = ft_doublestrcpy(argc, argv);
 }
 
 void    check_no_rep_num(char **double_str)
@@ -98,20 +98,20 @@ void    check_no_rep_num(char **double_str)
     }
 }
 
-void    check_args_max_int(t_stack_a *stack_a)
+void    check_args_max_int(t_stack *stack)
 {
     int i;
 
     i = 0;
-    while (stack_a->args[i])
+    while (stack->args[i])
     {
-        if (ft_atoi_long(stack_a->args[i], stack_a) == 0 && stack_a->atoi_error == 1)
+        if (ft_atoi_long(stack->args[i], stack) == 0 && stack->atoi_error == 1)
         {
-            ft_double_free(stack_a->args);
+            ft_double_free(stack->args);
             ft_error(INV_NUM_ARGS);
         }
         else
             i++;
     }
-    check_no_rep_num(stack_a->args);
+    check_no_rep_num(stack->args);
 }

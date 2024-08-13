@@ -14,22 +14,22 @@ void    ft_double_free(char **double_str)
     double_str = NULL;
 }
 
-void    ft_error_allocated(char *str, t_stack_a *stack_a)
+void    ft_error_allocated(char *str, t_stack *stack)
 {
     t_list  *lst;
 
-    if (stack_a->args)
-        ft_double_free(stack_a->args);
-    if (stack_a->list)
+    if (stack->args)
+        ft_double_free(stack->args);
+    if (stack->stack_a)
     {
-        while (*stack_a->list)
+        while (*stack->stack_a)
         {
-            lst = *stack_a->list;
-            *stack_a->list = (*stack_a->list)->next;
+            lst = *stack->stack_a;
+            *stack->stack_a = (*stack->stack_a)->next;
             lst->content = NULL;
             free(lst);
         }
-        free(stack_a->list);
+        free(*stack->stack_a);
     }
     ft_error(str);
 }
