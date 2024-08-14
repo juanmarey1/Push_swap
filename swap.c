@@ -3,7 +3,7 @@
 void    swap_a(t_stack *stack)
 {
     t_list  *lst;
-    void    *aux;
+    int     aux;
     
     lst = *stack->stack_a;
     aux = lst->content;
@@ -15,7 +15,7 @@ void    swap_a(t_stack *stack)
 void    swap_b(t_stack *stack)
 {
     t_list  *lst;
-    void    *aux;
+    int     aux;
     
     lst = *stack->stack_b;
     aux = lst->content;
@@ -28,7 +28,7 @@ void    swap_ab(t_stack *stack)
 {
     t_list  *lst;
     t_list  *lst2;
-    void    *aux;
+    int     aux;
     
     lst = (*stack->stack_a);
     aux = lst->content;

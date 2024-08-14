@@ -13,10 +13,19 @@ typedef struct s_stack
     int     b_nums;
     int     atoi_error;
     int     moves;
-    int     contador;
-    int     min_moves;
-    int     test_moves;
-    int     number_in_list_a;
+    int     num_list_a;
+    int     num_list_b;
+    int     up_a;
+    int     up_b;
+    int     down_a;
+    int     down_b;
+    int     up_ab;
+    int     down_ab;
+    int     up_a_down_b;
+    int     down_a_up_b;
+    int     common_up;
+    int     common_down;
+    int     which_case;
 }   t_stack;
 
 void    ft_double_free(char **double_str);
@@ -41,9 +50,15 @@ void    swap_a(t_stack *stack);
 void    swap_b(t_stack *stack);
 void    swap_ab(t_stack *stack);
 
+void    sort_3_nums(t_stack *stack);
 int find_cost(t_stack *stack);
 int find_closest_number_to_a(int num_a, t_list *list_b);
 int find_opt_moves_a(t_stack *stack, int i);
-int find_opt_moves_b(t_stack *stack, int i);
+int find_opt_moves_b(t_stack *stack, int j);
+void    push_a_to_b(t_stack *stack);
+void    back_to_a(t_stack *stack);
+void    optimal_b_to_a(t_stack *stack, int i);
+void    push_back_to_a(t_stack *stack);
+void    numbers_ordered(t_stack *stack);
 
 #endif

@@ -8,7 +8,7 @@ void    free_list(t_list *head)
     {
         lst = head;
         head = head->next;
-        lst->content = NULL;
+        lst->content = 0;
         free(lst);
     }
 }

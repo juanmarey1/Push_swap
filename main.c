@@ -22,16 +22,44 @@ void    args_control(int argc, char **argv, t_stack *stack)
     check_args_max_int(stack);
 }
 
-void    push_2_numbers(t_stack  *stack)
+void    algorithm(t_stack  *stack)
 {
+    stack->stack_b = (t_list**)malloc(sizeof(t_list*));
+    *stack->stack_b = NULL;
     push_b(stack);
     push_b(stack);
     stack->a_nums = stack->a_nums - 2;
     stack->b_nums = stack->b_nums + 2;
     while (stack->a_nums > 3)
     {
-        stack->number_in_list_a = find_cost(&stack);
-        printf("%s\n", stack->number_in_list_a);
+        stack->num_list_a = find_cost(stack);
+        push_a_to_b(stack);
+        stack->a_nums--;
+        stack->b_nums++;
+    }
+    sort_3_nums(stack);
+    while (stack->b_nums > 0)
+    {
+        back_to_a(stack);
+        stack->b_nums--;
+        stack->a_nums++;
+    }
+    t_list *list_a;
+    t_list *list_b;
+    numbers_ordered(stack);
+        list_a = *stack->stack_a;
+    list_b = *stack->stack_b;
+    printf("//////////////LIST     A/////////////////////\n");
+    while (list_a != NULL)
+    {
+        printf("%d\n", list_a->content);
+        list_a = list_a->next;
+    }
+    printf("//////////////LIST     B/////////////////////\n");
+    while (list_b != NULL)
+    {
+        printf("%d\n", list_b->content);
+        list_b = list_b->next;
     }
 }
 
@@ -42,7 +70,15 @@ int main(int argc, char *argv[])
     struct_init(&stack);
     args_control(argc, argv, &stack);
     create_list(&stack);
-    if (stack.a_nums > 3)
-        push_2_numbers(&stack);
+    // if (stack.a_nums == 4)
+    if (stack.a_nums > 3 && stack.a_nums != 4)
+        algorithm(&stack);
+    else if (stack.a_nums == 2)
+    {
+        if ((*stack.stack_a)->content > (*stack.stack_a)->next->content)
+            swap_a(&stack);
+    }
+    else
+        sort_3_nums(&stack);
     // else condition for 3 or less
 }

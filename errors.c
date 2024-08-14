@@ -26,7 +26,7 @@ void    ft_error_allocated(char *str, t_stack *stack)
         {
             lst = *stack->stack_a;
             *stack->stack_a = (*stack->stack_a)->next;
-            lst->content = NULL;
+            lst->content = 0;
             free(lst);
         }
         free(*stack->stack_a);
