@@ -11,6 +11,7 @@ void    rotate_a(t_stack *stack)
     (*stack->stack_a) = (*stack->stack_a)->next->next;
     lst_first->next = NULL;
     ft_printf("ra\n");
+    stack->movements++;
 }
 
 void    rotate_b(t_stack *stack)
@@ -24,6 +25,7 @@ void    rotate_b(t_stack *stack)
     (*stack->stack_b) = (*stack->stack_b)->next->next;
     lst_first->next = NULL;
     ft_printf("rb\n");
+    stack->movements++;
 }
 
 void    rotate_ab(t_stack *stack)
@@ -44,4 +46,5 @@ void    rotate_ab(t_stack *stack)
     (*stack->stack_b) = (*stack->stack_b)->next->next;
     lst_first2->next = NULL;
     ft_printf("rr\n");
+    stack->movements++;
 }

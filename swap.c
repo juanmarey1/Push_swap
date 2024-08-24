@@ -10,6 +10,7 @@ void    swap_a(t_stack *stack)
     lst->content = lst->next->content;
     lst->next->content = aux;
     ft_printf("sa\n");
+    stack->movements++;
 }
 
 void    swap_b(t_stack *stack)
@@ -22,6 +23,7 @@ void    swap_b(t_stack *stack)
     lst->content = lst->next->content;
     lst->next->content = aux;
     ft_printf("sb\n");
+    stack->movements++;
 }
 
 void    swap_ab(t_stack *stack)
@@ -39,4 +41,5 @@ void    swap_ab(t_stack *stack)
     lst2->content = lst2->next->content;
     lst2->next->content = aux;
     ft_printf("ss\n");
+    stack->movements++;
 }

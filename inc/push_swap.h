@@ -26,11 +26,13 @@ typedef struct s_stack
     int     common_up;
     int     common_down;
     int     which_case;
+    int     movements;
 }   t_stack;
 
 void    ft_double_free(char **double_str);
 void    ft_error(char *str);
 void    ft_error_allocated(char *str, t_stack *stack);
+void    free_all(t_stack *stack);
 
 void    check_args_int_1(char **argv, t_stack *stack);
 void	check_args_int_2(int argc, char **argv, t_stack *stack);
@@ -50,6 +52,7 @@ void    swap_a(t_stack *stack);
 void    swap_b(t_stack *stack);
 void    swap_ab(t_stack *stack);
 
+void    sort_4_nums(t_stack *stack);
 void    sort_3_nums(t_stack *stack);
 int find_cost(t_stack *stack);
 int find_closest_number_to_a(int num_a, t_list *list_b);

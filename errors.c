@@ -34,6 +34,37 @@ void    ft_error_allocated(char *str, t_stack *stack)
     ft_error(str);
 }
 
+void    free_all(t_stack *stack)
+{
+    t_list  *lst;
+
+    if (stack->stack_a)
+    {
+        while (*stack->stack_a)
+        {
+            lst = *stack->stack_a;
+            *stack->stack_a = (*stack->stack_a)->next;
+            lst->content = 0;
+            free(lst);
+        }
+        free(*stack->stack_a);
+    }
+    stack->stack_a = NULL;
+    if (stack->stack_b)
+    {
+        while (*stack->stack_b)
+        {
+    printf("sexooo\n");
+            lst = *stack->stack_b;
+            *stack->stack_b = (*stack->stack_b)->next;
+            lst->content = 0;
+            free(lst);
+        }
+        free(*stack->stack_b);
+    }
+    stack->stack_b = NULL;
+}
+
 void    ft_error(char *str)
 {
     ft_putstr_fd("Error\n", 2);

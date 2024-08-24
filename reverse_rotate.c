@@ -10,6 +10,7 @@ void    reverse_rotate_a(t_stack *stack)
     ft_lstadd_front(stack->stack_a, lst_first->next);
     lst_first->next = NULL;
     ft_printf("rra\n");
+    stack->movements++;
 }
 
 void    reverse_rotate_b(t_stack *stack)
@@ -22,6 +23,7 @@ void    reverse_rotate_b(t_stack *stack)
     ft_lstadd_front(stack->stack_b, lst_first->next);
     lst_first->next = NULL;
     ft_printf("rrb\n");
+    stack->movements++;
 }
 
 void    reverse_rotate_ab(t_stack *stack)
@@ -40,4 +42,5 @@ void    reverse_rotate_ab(t_stack *stack)
     ft_lstadd_front(stack->stack_b, lst_first2->next);
     lst_first2->next = NULL;
     printf("rrr\n");
+    stack->movements++;
 }

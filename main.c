@@ -9,6 +9,7 @@ void    struct_init(t_stack *stack)
     stack->moves = 0;
     stack->a_nums = 0;
     stack->b_nums = 0;
+    stack->movements = 0;
 }
 
 void    args_control(int argc, char **argv, t_stack *stack)
@@ -25,6 +26,8 @@ void    args_control(int argc, char **argv, t_stack *stack)
 void    algorithm(t_stack  *stack)
 {
     stack->stack_b = (t_list**)malloc(sizeof(t_list*));
+    if (!stack->stack_b)
+        return ;
     *stack->stack_b = NULL;
     push_b(stack);
     push_b(stack);
@@ -38,29 +41,45 @@ void    algorithm(t_stack  *stack)
         stack->b_nums++;
     }
     sort_3_nums(stack);
+    // t_list *list_a;
+    // list_a = *stack->stack_a;
+    // ft_printf("//////////////LIST     A/////////////////////\n");
+    // while (list_a != NULL)
+    // {
+    //     ft_printf("%d\n", list_a->content);
+    //     list_a = list_a->next;
+    // }
+    // t_list *list_b;
+    // list_b = *stack->stack_b;
+    // ft_printf("//////////////LIST     B/////////////////////\n");
+    // while (list_b != NULL)
+    // {
+    //     ft_printf("%d\n", list_b->content);
+    //     list_b = list_b->next;
+    // }
     while (stack->b_nums > 0)
     {
         back_to_a(stack);
         stack->b_nums--;
         stack->a_nums++;
     }
-    t_list *list_a;
-    t_list *list_b;
     numbers_ordered(stack);
-        list_a = *stack->stack_a;
-    list_b = *stack->stack_b;
-    printf("//////////////LIST     A/////////////////////\n");
-    while (list_a != NULL)
+    *stack->stack_b = NULL;
+}
+
+int    check_if_ordered(t_stack *stack)
+{
+    t_list  *list_a;
+
+    list_a = *stack->stack_a;
+    while (list_a->next != NULL)
     {
-        printf("%d\n", list_a->content);
-        list_a = list_a->next;
+        if (list_a->content > list_a->next->content)
+            return (0);
+        else
+            list_a = list_a->next;
     }
-    printf("//////////////LIST     B/////////////////////\n");
-    while (list_b != NULL)
-    {
-        printf("%d\n", list_b->content);
-        list_b = list_b->next;
-    }
+    return (1);
 }
 
 int main(int argc, char *argv[])
@@ -71,8 +90,13 @@ int main(int argc, char *argv[])
     args_control(argc, argv, &stack);
     create_list(&stack);
     // if (stack.a_nums == 4)
+    check_if_ordered(&stack);
+    if (check_if_ordered(&stack) == 1)
+        return (0);
     if (stack.a_nums > 3 && stack.a_nums != 4)
         algorithm(&stack);
+    else if (stack.a_nums == 4)
+        sort_4_nums(&stack);
     else if (stack.a_nums == 2)
     {
         if ((*stack.stack_a)->content > (*stack.stack_a)->next->content)
@@ -80,5 +104,15 @@ int main(int argc, char *argv[])
     }
     else
         sort_3_nums(&stack);
-    // else condition for 3 or less
+    t_list *list_a;
+    list_a = *stack.stack_a;
+    ft_printf("movements: %d\n", stack.movements);
+    ft_printf("//////////////LIST     A/////////////////////\n");
+    while (list_a != NULL)
+    {
+        ft_printf("%d\n", list_a->content);
+        list_a = list_a->next;
+    }
+    free_all(&stack);
+    return (0);
 }

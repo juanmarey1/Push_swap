@@ -18,8 +18,8 @@ void    first_bigger_than_second(t_stack *stack, t_list *lst)
     if (lst->content > lst->next->next->content &&
         lst->next->content > lst->next->next->content)
     {
-        rotate_a(stack);
-        rotate_a(stack);
+        swap_a(stack);
+        reverse_rotate_a(stack);
     }
     else if (lst->content > lst->next->next->content &&
         lst->next->content < lst->next->next->content)

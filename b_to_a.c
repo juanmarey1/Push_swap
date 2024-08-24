@@ -65,7 +65,7 @@ void    optimal_b_to_a(t_stack *stack, int i)
 
 void    push_back_to_a(t_stack *stack)
 {
-    if (stack->up_a < stack->down_a)
+    if (stack->up_a <= stack->down_a)
     {
         stack->down_a = 0;
         while (stack->up_a-- > 0)

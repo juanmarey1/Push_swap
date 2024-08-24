@@ -13,6 +13,7 @@ void    push_a(t_stack *stack)
     free(*stack->stack_b);
     *stack->stack_b = lsta;
     ft_printf("pa\n");
+    stack->movements++;
 }
 
 void    push_b(t_stack *stack)
@@ -28,4 +29,5 @@ void    push_b(t_stack *stack)
     free(*stack->stack_a);
     *stack->stack_a = lsta;
     ft_printf("pb\n");
+    stack->movements++;
 }
