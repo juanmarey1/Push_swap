@@ -1,7 +1,7 @@
 #include "inc/push_swap.h"
 
 void    struct_init(t_stack *stack)
-{
+{// Initiate struct
     stack->args = NULL;
     stack->stack_a = NULL;
     stack->stack_b = NULL;
@@ -13,13 +13,13 @@ void    struct_init(t_stack *stack)
 }
 
 void    args_control(int argc, char **argv, t_stack *stack)
-{
+{// Check args number and see if they have "" or not
     if (argc < 2 || argc > 501)
-        ft_error(ARGS_ERROR);
+        ft_error(ARGS_ERROR, stack);
     if (argc == 2)
-        check_args_int_1(argv, stack);
+        check_args_argc_is_2(argv, stack);
     else
-        check_args_int_2(argc, argv, stack);
+        check_args_argc_not_2(argc, argv, stack);
     check_args_max_int(stack);
 }
 
@@ -41,22 +41,6 @@ void    algorithm(t_stack  *stack)
         stack->b_nums++;
     }
     sort_3_nums(stack);
-    // t_list *list_a;
-    // list_a = *stack->stack_a;
-    // ft_printf("//////////////LIST     A/////////////////////\n");
-    // while (list_a != NULL)
-    // {
-    //     ft_printf("%d\n", list_a->content);
-    //     list_a = list_a->next;
-    // }
-    // t_list *list_b;
-    // list_b = *stack->stack_b;
-    // ft_printf("//////////////LIST     B/////////////////////\n");
-    // while (list_b != NULL)
-    // {
-    //     ft_printf("%d\n", list_b->content);
-    //     list_b = list_b->next;
-    // }
     while (stack->b_nums > 0)
     {
         back_to_a(stack);
@@ -89,8 +73,6 @@ int main(int argc, char *argv[])
     struct_init(&stack);
     args_control(argc, argv, &stack);
     create_list(&stack);
-    // if (stack.a_nums == 4)
-    check_if_ordered(&stack);
     if (check_if_ordered(&stack) == 1)
         return (0);
     if (stack.a_nums > 3 && stack.a_nums != 4)
@@ -104,15 +86,15 @@ int main(int argc, char *argv[])
     }
     else
         sort_3_nums(&stack);
-    t_list *list_a;
-    list_a = *stack.stack_a;
-    ft_printf("movements: %d\n", stack.movements);
-    ft_printf("//////////////LIST     A/////////////////////\n");
-    while (list_a != NULL)
-    {
-        ft_printf("%d\n", list_a->content);
-        list_a = list_a->next;
-    }
-    free_all(&stack);
+    ft_end_program(&stack);
     return (0);
 }
+    // t_list *list_a;
+    // list_a = *stack.stack_a;
+    // ft_printf("movements: %d\n", stack.movements);
+    // ft_printf("//////////////LIST     A/////////////////////\n");
+    // while (list_a != NULL)
+    // {
+    //     ft_printf("%d\n", list_a->content);
+    //     list_a = list_a->next;
+    // }

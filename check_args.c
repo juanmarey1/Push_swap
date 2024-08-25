@@ -1,7 +1,7 @@
 #include "inc/push_swap.h"
 
-void    check_args_int_1(char **argv, t_stack *stack) //If it comes with commas
-{
+void    check_args_argc_is_2(char **argv, t_stack *stack)
+{// If numbers are between "" (checks that they are int)
     int i;
     int j;
 
@@ -14,32 +14,32 @@ void    check_args_int_1(char **argv, t_stack *stack) //If it comes with commas
                 || (stack->args[i][j] >= '0' && stack->args[i][j] <= '9'))
             j++;
         else
-            ft_error_allocated(NOT_NUM_ARGS, stack);
+            ft_error(NOT_NUM_ARGS, stack);
         while (stack->args[i][j])
         {
             if (!(stack->args[i][j] >= '0' && stack->args[i][j] <= '9'))
-                ft_error_allocated(NOT_NUM_ARGS, stack);
+                ft_error(NOT_NUM_ARGS, stack);
             j++;
         }
     }
 }
 
-char    **ft_doublestrcpy(int argc, char **argv)
+char    **ft_doublestrcpy(int argc, char **argv, t_stack *stack)
 {
     int i;
     char    **double_str;
 
     double_str = (char **)malloc(sizeof(char *) * argc);
     if (!double_str)
-        ft_error(MALLOC_ERR);
+        ft_error(MALLOC_ERR, stack);
     i = 1;
     while (argv[i])
     {
         double_str[i - 1] = ft_strdup(argv[i]);
         if (!double_str[i - 1])
         {
-            ft_double_free(double_str);
-            ft_error(MALLOC_ERR);
+            ft_double_free(double_str, stack);
+            ft_error(MALLOC_ERR, stack);
         }
         i++;
     }
@@ -47,7 +47,7 @@ char    **ft_doublestrcpy(int argc, char **argv)
     return (double_str);
 }
 
-void	check_args_int_2(int argc, char **argv, t_stack *stack)
+void	check_args_argc_not_2(int argc, char **argv, t_stack *stack)
 {
 	int	i;
 	int	j;
@@ -60,18 +60,18 @@ void	check_args_int_2(int argc, char **argv, t_stack *stack)
                 || (argv[i][j] >= '0' && argv[i][j] <= '9'))
             j++;
         else
-            ft_error_allocated(NOT_NUM_ARGS, stack);
+            ft_error(NOT_NUM_ARGS, stack);
         while (argv[i][j])
         {
             if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
-                ft_error_allocated(NOT_NUM_ARGS, stack);
+                ft_error(NOT_NUM_ARGS, stack);
             j++;
         }
     }
-    stack->args = ft_doublestrcpy(argc, argv);
+    stack->args = ft_doublestrcpy(argc, argv, stack);
 }
 
-void    check_no_rep_num(char **double_str)
+void    check_no_rep_num(char **double_str, t_stack *stack)
 {
     int len;
     int j;
@@ -88,8 +88,8 @@ void    check_no_rep_num(char **double_str)
         {
             if (ft_atoi(double_str[stay]) == ft_atoi(double_str[j]))
             {
-                ft_double_free(double_str);
-                ft_error(ARGS_REPEAT);
+                ft_double_free(double_str, stack);
+                ft_error(ARGS_REPEAT, stack);
             }
             else
                 j++;
@@ -107,11 +107,11 @@ void    check_args_max_int(t_stack *stack)
     {
         if (ft_atoi_long(stack->args[i], stack) == 0 && stack->atoi_error == 1)
         {
-            ft_double_free(stack->args);
-            ft_error(INV_NUM_ARGS);
+            ft_double_free(stack->args, stack);
+            ft_error(INV_NUM_ARGS, stack);
         }
         else
             i++;
     }
-    check_no_rep_num(stack->args);
+    check_no_rep_num(stack->args, stack);
 }

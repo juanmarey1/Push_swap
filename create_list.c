@@ -21,10 +21,10 @@ void    create_list(t_stack *stack)
 
     stack->stack_a = (t_list**)malloc(sizeof(t_list*));
     if (!(stack->stack_a))
-        ft_error_allocated(MALLOC_ERR, stack);
+        ft_error(MALLOC_ERR, stack);
     *stack->stack_a = ft_lstnew(ft_atoi((char *)stack->args[0]));
     if (!(*stack->stack_a))
-        ft_error_allocated(MALLOC_ERR, stack);
+        ft_error(MALLOC_ERR, stack);
     head = *stack->stack_a;
     i = 1;
     while (stack->args[i])
@@ -33,12 +33,12 @@ void    create_list(t_stack *stack)
         if (!new_lst)
         {
             free_list(head);
-            ft_error_allocated(MALLOC_ERR, stack);
+            ft_error(MALLOC_ERR, stack);
         }
         ft_lstadd_back(stack->stack_a, new_lst);
         i++;
     }
     stack->a_nums = i;
     *stack->stack_a = head;
-    ft_double_free(stack->args);
+    ft_double_free(stack->args, stack);
 }

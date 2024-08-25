@@ -29,13 +29,12 @@ typedef struct s_stack
     int     movements;
 }   t_stack;
 
-void    ft_double_free(char **double_str);
-void    ft_error(char *str);
-void    ft_error_allocated(char *str, t_stack *stack);
-void    free_all(t_stack *stack);
+void    ft_double_free(char **double_str, t_stack *stack);
+void    ft_error(char *str, t_stack *stack);
+void    ft_end_program(t_stack *stack);
 
-void    check_args_int_1(char **argv, t_stack *stack);
-void	check_args_int_2(int argc, char **argv, t_stack *stack);
+void    check_args_argc_is_2(char **argv, t_stack *stack);
+void	check_args_argc_not_2(int argc, char **argv, t_stack *stack);
 void    check_args_max_int(t_stack *stack);
 void    create_list(t_stack *stack);
 int     ft_atoi_long(const char *str, t_stack *stack);
