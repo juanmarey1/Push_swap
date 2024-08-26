@@ -25,8 +25,15 @@ void	struct_init(t_stack *stack)
 
 void	args_control(int argc, char **argv, t_stack *stack)
 {
+	int	i;
+
+	i = 0;
 	if (argc == 2)
 	{
+		while (argv[1][i] == ' ')
+			i++;
+		if (argv[1][i] == '\0')
+			ft_error(stack);
 		if (argv[1][0] == '\0')
 			ft_error(stack);
 		check_args_argc_is_2(argv, stack);
