@@ -2,7 +2,7 @@ NAME =	push_swap #Nombre ejecutable
 
 CC =	gcc
 RM =	rm -rf
-CFLAGS =	-Wall -Wextra -Werror #-fsanitize=address -g #fsanitize=address for leak control
+CFLAGS =	-Wall -Wextra -Werror -fsanitize=address -g #fsanitize=address for leak control
 
 SRCS = check_args.c errors.c main.c create_list.c push.c reverse_rotate.c rotate.c swap.c atoi_long.c find_cost.c find_closest_number_to_a.c sort_3_nums.c a_to_b.c back_to_a.c b_to_a.c sort_4_nums.c
 OBJS = $(SRCS:.c=.o) #When OBJS is executed, it changes .c to .o

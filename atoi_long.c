@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   atoi_long.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrey-roj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/26 14:46:03 by jrey-roj          #+#    #+#             */
+/*   Updated: 2024/08/26 14:46:04 by jrey-roj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inc/push_swap.h"
 
 int	ft_error_atoi(t_stack *stack)
@@ -27,8 +39,8 @@ int	ft_atoi_long(const char *str, t_stack *stack)
 		longnum = longnum + (*str - '0');
 		str++;
 	}
-	if ((longnum > (long long int)INT_MAX && neg == 0) ||
-            (longnum > (long long)INT_MAX + 1 && neg == 1))
+	if ((longnum > (long long int)INT_MAX && neg == 0)
+		|| (longnum > (long long)INT_MAX + 1 && neg == 1))
 		return (ft_error_atoi(stack));
 	if (neg == 1)
 		return (longnum * -1);

@@ -1,45 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrey-roj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/26 15:44:18 by jrey-roj          #+#    #+#             */
+/*   Updated: 2024/08/26 15:44:20 by jrey-roj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inc/push_swap.h"
 
-void    swap_a(t_stack *stack)
+void	swap_a(t_stack *stack)
 {
-    t_list  *lst;
-    int     aux;
-    
-    lst = *stack->stack_a;
-    aux = lst->content;
-    lst->content = lst->next->content;
-    lst->next->content = aux;
-    ft_printf("sa\n");
-    stack->movements++;
+	t_list	*lst;
+	int		aux;
+
+	lst = *stack->stack_a;
+	aux = lst->content;
+	lst->content = lst->next->content;
+	lst->next->content = aux;
+	ft_printf("sa\n");
+	stack->movements++;
 }
 
-void    swap_b(t_stack *stack)
+void	swap_b(t_stack *stack)
 {
-    t_list  *lst;
-    int     aux;
-    
-    lst = *stack->stack_b;
-    aux = lst->content;
-    lst->content = lst->next->content;
-    lst->next->content = aux;
-    ft_printf("sb\n");
-    stack->movements++;
+	t_list	*lst;
+	int		aux;
+
+	lst = *stack->stack_b;
+	aux = lst->content;
+	lst->content = lst->next->content;
+	lst->next->content = aux;
+	ft_printf("sb\n");
+	stack->movements++;
 }
 
-void    swap_ab(t_stack *stack)
+void	swap_ab(t_stack *stack)
 {
-    t_list  *lst;
-    t_list  *lst2;
-    int     aux;
-    
-    lst = (*stack->stack_a);
-    aux = lst->content;
-    lst->content = lst->next->content;
-    lst->next->content = aux;
-    lst2 = (*stack->stack_b);
-    aux = lst2->content;
-    lst2->content = lst2->next->content;
-    lst2->next->content = aux;
-    ft_printf("ss\n");
-    stack->movements++;
+	t_list	*lst;
+	t_list	*lst2;
+	int		aux;
+
+	lst = (*stack->stack_a);
+	aux = lst->content;
+	lst->content = lst->next->content;
+	lst->next->content = aux;
+	lst2 = (*stack->stack_b);
+	aux = lst2->content;
+	lst2->content = lst2->next->content;
+	lst2->next->content = aux;
+	ft_printf("ss\n");
+	stack->movements++;
 }
